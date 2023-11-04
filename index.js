@@ -45,7 +45,7 @@ mongoose.connect(MONGO_URL)
   {
   console.log("Connected to database")
 
-  app.listen(PORT,'0.0.0.0',()=>{
+  app.listen(PORT,()=>{
     console.log(`im running on the port ${PORT}`)
    })
 }).catch((error)=>
