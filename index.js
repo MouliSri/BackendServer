@@ -1,36 +1,29 @@
 
 require("dotenv").config()
 const express=require("express")
-
 const ProductRoutes=require("./routes/ProductRoutes")
-
 const app=express()
-
 const cors=require("cors")
-
-
 const errorMiddleware=require("./middleware/errorMiddleware")
-
-
-
-
 const mongoose = require('mongoose');
 
-const MONGO_URL=process.env.MONGO_URL
-
-const PORT=process.env.PORT || 5000
 
 
-const corsOption={
-  origin: 'http://example.com',
-  optionsSuccessStatus: 200
+const PORT = process.env.PORT || 3000
+const MONGO_URL = process.env.MONGO_URL
+const FRONTEND = process.env.FRONTEND
+
+var corsOptions = {
+    origin: FRONTEND,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-app.use(cors(corsOption))
-
-
-
+app.use(cors(corsOptions))
 app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
+
+
 
 
 app.use("/products",ProductRoutes)
